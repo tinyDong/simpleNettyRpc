@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="RPCClient:war">
+    <output-path>$PROJECT_DIR$/RPCClient/target</output-path>
+    <root id="archive" name="RPCClient.war">
+      <element id="artifact" artifact-name="RPCClient:war exploded" />
+    </root>
+  </artifact>
+</component>

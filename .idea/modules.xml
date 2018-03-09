@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/RPCClient/RPCClient.iml" filepath="$PROJECT_DIR$/RPCClient/RPCClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RPCServer/RPCServer.iml" filepath="$PROJECT_DIR$/RPCServer/RPCServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xd-rpc.iml" filepath="$PROJECT_DIR$/xd-rpc.iml" />
+    </modules>
+  </component>
+</project>
