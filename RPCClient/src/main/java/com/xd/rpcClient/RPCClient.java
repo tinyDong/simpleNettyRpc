@@ -1,6 +1,7 @@
 package com.xd.rpcClient;
 
 import com.xd.coder.RpcDecoder;
+import com.xd.dto.RequestDto;
 import com.xd.proxy.JDKDynamicProxy;
 import com.xd.service.AccountService;
 import io.netty.bootstrap.Bootstrap;
@@ -36,7 +37,8 @@ public class RPCClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline p = ch.pipeline();
-                        p.addLast(RpcDecoder)
+                        p.addLast(new RpcDecoder(RequestDto.class));
+                        
                     }
                 });
         ChannelFuture channelFuture = b.connect(remotePeer);
