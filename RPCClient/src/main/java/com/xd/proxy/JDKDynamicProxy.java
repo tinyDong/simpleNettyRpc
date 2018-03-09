@@ -1,9 +1,12 @@
 package com.xd.proxy;
 
 
+import com.xd.dto.RequestDto;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class JDKDynamicProxy implements InvocationHandler{
@@ -17,6 +20,14 @@ public class JDKDynamicProxy implements InvocationHandler{
 //        Class aClass= classMap.get(key);
 //        Method me = aClass.getDeclaredMethod(method.getName(), null);
 //        return me.invoke(aClass.newInstance(),null);
+        RequestDto requestDto=new RequestDto();
+        requestDto.setClassName(method.getDeclaringClass().getName());
+        requestDto.setMethodName(method.getName());
+        requestDto.setParameters(args);
+        requestDto.setParameterTypes(method.getParameterTypes());
+        requestDto.setRequestId(UUID.randomUUID().toString());
+
+
         return null;
     }
 
@@ -39,10 +50,4 @@ public class JDKDynamicProxy implements InvocationHandler{
 
 
 
-//    public static void main(String[] args) {
-//        BankDao bankDao = (BankDao)Proxy.newProxyInstance(BankDao.class.getClassLoader(), new Class[]{BankDao.class},
-//                JDKDynamicProxy.getInstance());
-//
-//        System.out.println(bankDao.transfer());
-//    }
 }
