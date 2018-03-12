@@ -42,18 +42,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<ResponseDto> {
     public RpcFuture writeRequest(RequestDto requestDto){
         RpcFuture rpcFuture=new RpcFuture(requestDto);
         requestIdMap.put(requestDto.getRequestId(),rpcFuture);
-        final CountDownLatch countDownLatch=new CountDownLatch(1);
-        channel.writeAndFlush(requestDto).addListener(new ChannelFutureListener() {
-            public void operationComplete(ChannelFuture future) throws Exception {
-                countDownLatch.countDown();
-                System.out.println("writeRequest   操作完成");
-            }
-        });
-        try {
-            countDownLatch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        channel.writeAndFlush(requestDto);
         return rpcFuture;
     }
 

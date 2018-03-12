@@ -38,8 +38,8 @@ public class RPCClient {
                         public void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline p = ch.pipeline();
                             p.addLast(new RpcDecoder(RequestDto.class));
-                            p.addLast(new RpcEncoder(ResponseDto.class));
                             p.addLast(new ClientHandler());
+                            p.addLast(new RpcEncoder(ResponseDto.class));
                         }
                     });
 
