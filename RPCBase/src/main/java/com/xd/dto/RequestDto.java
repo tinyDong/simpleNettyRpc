@@ -1,8 +1,10 @@
 package com.xd.dto;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class RequestDto {
+public class RequestDto implements Serializable{
+    private static final long serialVersionUID = -6733093262748008641L;
     private String requestId;
     private String className;
     private String methodName;

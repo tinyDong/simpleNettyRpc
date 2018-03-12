@@ -39,6 +39,7 @@ public class RPCClient {
                             ChannelPipeline p = ch.pipeline();
                             p.addLast(new RpcDecoder(RequestDto.class));
                             p.addLast(new RpcEncoder(ResponseDto.class));
+                            p.addLast(new ClientHandler());
                         }
                     });
 
@@ -46,6 +47,7 @@ public class RPCClient {
             ChannelFuture f = b.connect(HOST, port).sync();
             f.addListener(new ChannelFutureListener() {
                 public void operationComplete(ChannelFuture future) throws Exception {
+                    System.out.println("已经链接");
                     if (future.isSuccess()){
                         relatedHandler(future);
                     }

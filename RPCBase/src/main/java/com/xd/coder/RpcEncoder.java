@@ -15,10 +15,13 @@ public class RpcEncoder extends MessageToByteEncoder {
     }
 
     protected void encode(ChannelHandlerContext ctx, Object msg, ByteBuf out) throws Exception {
-        if (operationClass.isInstance(msg)){
+        System.out.println("start encode");
+        System.out.println("encode obj==="+msg.toString());
+//        if (operationClass.isInstance(msg)){
             byte[] datas = ByteObjConverter.objectToByte(msg);
             out.writeBytes(datas);
             ctx.flush();
-        }
+
+//        }
     }
 }

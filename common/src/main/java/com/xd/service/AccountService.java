@@ -1,7 +1,7 @@
 package com.xd.service;
 
 public interface AccountService {
-    void add();
+    String add();
 
     void delete();
 }

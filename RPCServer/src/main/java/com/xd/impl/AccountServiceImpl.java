@@ -3,8 +3,9 @@ package com.xd.impl;
 import com.xd.service.AccountService;
 
 public class AccountServiceImpl implements AccountService{
-    public void add() {
-        System.out.println("accountAdd");
+    public String add() {
+        System.out.println("请求成功");
+        return "请求成功";
     }
 
     public void delete() {

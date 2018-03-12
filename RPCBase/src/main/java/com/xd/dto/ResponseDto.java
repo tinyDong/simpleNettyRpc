@@ -1,6 +1,9 @@
 package com.xd.dto;
 
-public class ResponseDto<T> {
+import java.io.Serializable;
+
+public class ResponseDto<T> implements Serializable{
+    private static final long serialVersionUID = -1079540108195556590L;
     private String requestId;
     private String msg;
     private T data;

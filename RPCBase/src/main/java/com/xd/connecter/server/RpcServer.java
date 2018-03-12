@@ -9,6 +9,7 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
@@ -16,9 +17,10 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class RpcServer {
 
-    private ConcurrentHashMap<String,Object> beanMap=new ConcurrentHashMap();
+    private ConcurrentHashMap<String,Object> beanMap;
 
-    public void startServer(){
+    public void startServer(ConcurrentHashMap beanmap){
+        this.beanMap=beanmap;
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
@@ -32,9 +34,10 @@ public class RpcServer {
                         public void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline p = ch.pipeline();
                             //p.addLast(new LoggingHandler(LogLevel.INFO));
-                            p.addLast(new ServerHandler(beanMap));
+//                            p.addLast(new LengthFieldBasedFrameDecoder(65536, 0, 4, 0, 0));
                             p.addLast(new RpcDecoder(RequestDto.class));
                             p.addLast(new RpcEncoder(ResponseDto.class));
+                            p.addLast(new ServerHandler(beanMap));
                         }
                     });
 
