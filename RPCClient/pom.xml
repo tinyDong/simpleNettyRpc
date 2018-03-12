@@ -18,11 +18,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>simleNettyRPC-1</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
     <build>
         <finalName>RPCClient</finalName>
