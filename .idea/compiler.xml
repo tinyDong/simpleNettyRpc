@@ -7,12 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
+        <module name="RPCBase" />
         <module name="RPCClient" />
         <module name="RPCServer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="common" target="1.5" />
+      <module name="RPCBase" target="1.5" />
       <module name="RPCClient" target="1.5" />
       <module name="RPCServer" target="1.5" />
       <module name="xd-rpc" target="1.5" />

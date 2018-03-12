@@ -10,6 +10,9 @@
           <element id="archive" name="common-1.0-SNAPSHOT.jar">
             <element id="module-output" name="common" />
           </element>
+          <element id="archive" name="RPCBase-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="RPCBase" />
+          </element>
           <element id="library" level="project" name="Maven: io.netty:netty-all:4.0.24.Final" />
           <element id="library" level="project" name="Maven: cglib:cglib:3.1" />
           <element id="library" level="project" name="Maven: org.ow2.asm:asm:4.2" />

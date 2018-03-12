@@ -16,16 +16,7 @@
     </modules>
 
     <dependencies>
-        <dependency>
-            <groupId>simleNettyRPC-1</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>simleNettyRPC-1</groupId>
-            <artifactId>RPCBase</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

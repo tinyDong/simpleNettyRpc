@@ -1,13 +1,13 @@
 package com.xd.proxy;
 
 
+import com.xd.connecter.client.RPCClient;
+import com.xd.connecter.client.RpcFuture;
 import com.xd.dto.RequestDto;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class JDKDynamicProxy implements InvocationHandler{
 
@@ -27,8 +27,8 @@ public class JDKDynamicProxy implements InvocationHandler{
         requestDto.setParameterTypes(method.getParameterTypes());
         requestDto.setRequestId(UUID.randomUUID().toString());
 
-
-        return null;
+        RpcFuture rpcFuture=RPCClient.newInstance().getHandler().writeRequest(requestDto);
+        return rpcFuture.get();
     }
 
     public static JDKDynamicProxy getInstance(){
