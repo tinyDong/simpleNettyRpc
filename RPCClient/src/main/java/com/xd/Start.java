@@ -7,18 +7,16 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
 import java.util.Scanner;
+import java.util.concurrent.CountDownLatch;
 
 public class Start {
     public static void main(String[] args) {
 
+        CountDownLatch latch=new CountDownLatch(1);
+        RPCClient.startWithPort(3333,latch);
 
-        new Thread(new Runnable() {
-            public void run() {
-                RPCClient.newInstance().connectToServer(3333);
-            }
-        }).start();
         try {
-            Thread.sleep(1000);
+            latch.await();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -10,10 +10,19 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
-public class RPCClient {
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class RPCClient implements Runnable{
     static final String HOST = System.getProperty("host", "127.0.0.1");
     private ClientHandler clientHandler;
     private static RPCClient rpcClient;
+    private static Executor executor;
+    private static int sercerPort;
+    private static CountDownLatch startLatch;
+
 
     public static RPCClient newInstance(){
         if (rpcClient == null) {
@@ -47,6 +56,7 @@ public class RPCClient {
             ChannelFuture f = b.connect(HOST, port).sync();
             f.addListener(new ChannelFutureListener() {
                 public void operationComplete(ChannelFuture future) throws Exception {
+                    startLatch.countDown();
                     System.out.println("已经链接");
                     if (future.isSuccess()){
                         relatedHandler(future);
@@ -69,5 +79,18 @@ public class RPCClient {
 
     private void relatedHandler(ChannelFuture future){
         this.clientHandler= future.channel().pipeline().get(ClientHandler.class);
+    }
+
+    public static void startWithPort(int port, CountDownLatch latch) {
+        if (executor==null){
+            executor= Executors.newSingleThreadExecutor();
+            executor.execute(newInstance());
+            sercerPort=port;
+            startLatch=latch;
+        }
+    }
+
+    public void run() {
+        connectToServer(sercerPort);
     }
 }

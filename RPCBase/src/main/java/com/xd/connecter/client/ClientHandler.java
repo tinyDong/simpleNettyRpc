@@ -12,19 +12,9 @@ public class ClientHandler extends SimpleChannelInboundHandler<ResponseDto> {
     private Channel channel;
 
     private ConcurrentHashMap<String,RpcFuture> requestIdMap=new ConcurrentHashMap<String, RpcFuture>();
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) {
-        System.out.println("通道已经激活");
-//        ctx.writeAndFlush("通道激活");
-    }
-//    @Override
-//    public void channelRead(ChannelHandlerContext ctx, Object msg) {
-//        System.out.println("channelRead");
-//        ctx.write(msg);
-//    }
+
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
-        super.channelRegistered(ctx);
         this.channel = ctx.channel();
     }
 
@@ -44,11 +34,6 @@ public class ClientHandler extends SimpleChannelInboundHandler<ResponseDto> {
         requestIdMap.put(requestDto.getRequestId(),rpcFuture);
         channel.writeAndFlush(requestDto);
         return rpcFuture;
-    }
-
-    @Override
-    public void channelReadComplete(ChannelHandlerContext ctx) {
-        ctx.flush();
     }
 
     @Override
