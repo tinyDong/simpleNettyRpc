@@ -24,6 +24,11 @@ public class Start {
         String result=accountService.add();
         System.out.println("client求情结果-======"+result);
         Scanner scan = new Scanner(System.in) ;
+
+        Integer result2 =accountService.delete(3,5);
+        System.out.println("client求情结果1111-======"+result2);
+
+
         String str = scan.next(); // 接收数据
         do{
             System.out.println("输入的数据为：" + str) ;

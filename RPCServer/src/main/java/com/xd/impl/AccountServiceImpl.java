@@ -8,7 +8,8 @@ public class AccountServiceImpl implements AccountService{
         return "请求成功";
     }
 
-    public void delete() {
-        System.out.println("accountDelete");
+    public Integer delete(Integer a,Integer b) {
+        System.out.println("accountDelete=========="+a+b);
+        return a+b;
     }
 }
